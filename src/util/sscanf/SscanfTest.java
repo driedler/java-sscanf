@@ -71,6 +71,15 @@ public class SscanfTest {
 		// long: -23432
 		// fixed int: -2344
 		// unsigned: 2344
+		
+		Object var[] = {1, 2};
+		String buffer = "005 DEAD\n";
+		if(Sscanf.scan2(buffer, "%X %x", var) !=2) {
+			System.err.println("error parsing hex strings");
+		} else {
+			System.out.println("hex1: " + (int)var[0]);
+			System.out.println("hex2: " + (int)var[1]);
+		}
 	}
 
 }
