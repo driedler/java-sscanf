@@ -24,6 +24,21 @@ public class Sscanf {
 		return outs.toArray();
 	}
 	
+	public static int scan2(String source, String format, Object params[]) {
+		SscanfFormat sf = new SscanfFormat(source, format);
+		int parseCount = 0;
+		
+		for(int i = 0; i < params.length; ++i) {
+			params[i] = parse(sf, params[i]);
+			if(params[i] == null)
+				break;
+			else
+				++parseCount;
+		}
+		
+		return parseCount;
+	}
+	
 	
 	private static Object parse(SscanfFormat sf, Object param) {
 		if(!sf.prepareNextParseParam()) {
