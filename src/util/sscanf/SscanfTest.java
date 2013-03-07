@@ -39,7 +39,7 @@ public class SscanfTest {
 		variables = Sscanf.scan("my hex string: DEADBEEF\n", "my hex string: %X\n", 1);
 		
 		System.out.println("parse count: " + variables.length);
-		System.out.println("hex str1: " + (Long)variables[0]);
+		System.out.println("hex str1: " + (int)variables[0]);
 
 		// Output:
 		// parse count: 1
@@ -48,8 +48,8 @@ public class SscanfTest {
 		variables = Sscanf.scan("BSJB: 00DE 00AD", "BSJB: %X %04X", 1, 2);
 		
 		System.out.println("parse count: " + variables.length);
-		System.out.println("hex str1: " + (Long)variables[0]);
-		System.out.println("4 char hex str2: " + (Long)variables[1]);
+		System.out.println("hex str1: " + (int)variables[0]);
+		System.out.println("4 char hex str2: " + (int)variables[1]);
 		
 		// Output:
 		// parse count: 2
@@ -60,10 +60,10 @@ public class SscanfTest {
 				"My int: %i, My long: %d, My fixed int: %04i, My unsigned: -%u",(int) 1, 2, (int)3, 4);
 		
 		System.out.println("parse count: " + variables.length);
-		System.out.println("int: " + (Integer)variables[0]);
-		System.out.println("long: " + (Long)variables[1]);
-		System.out.println("fixed int: " + (Integer)variables[2]);
-		System.out.println("unsigned: " + (Long)variables[3]);
+		System.out.println("int: " + (int)variables[0]);
+		System.out.println("long: " + (int)variables[1]);
+		System.out.println("fixed int: " + (int)variables[2]);
+		System.out.println("unsigned: " + (int)variables[3]);
 		
 		// Output:
 		// parse count: 4
