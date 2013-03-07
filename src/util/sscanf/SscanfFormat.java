@@ -1,7 +1,7 @@
+package util.sscanf;
+
 // Code borrowed heavily from:
 // Copyright (c) 2003-2011, Jodd Team (jodd.org). All Rights Reserved.
-
-package com.superbsjukebox.shared.utils.sscanf;
 
 
 
