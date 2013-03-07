@@ -1,9 +1,8 @@
-// Code barrowed heavily from:
+// Code borrowed heavily from:
 // Copyright (c) 2003-2011, Jodd Team (jodd.org). All Rights Reserved.
 
-package util.sscanf;
+package com.superbsjukebox.shared.utils.sscanf;
 
-import java.math.BigInteger;
 
 
 public class SscanfFormat {
@@ -19,7 +18,6 @@ public class SscanfFormat {
 	protected boolean groupDigits;
 	protected char fmt;	                // one of cdeEfgGiosxXos
 	protected boolean countSignInLen;
-	private static final BigInteger bgInt = new BigInteger("9223372036854775808");  // 2^63
 	
 	protected String format;
 	protected String source;
@@ -215,7 +213,7 @@ public class SscanfFormat {
 		int index = parseToStartOfFormat();
 		
 		if(index != -1) {
-			Character c = new Character(source.charAt(index));
+			Character c = Character.valueOf(source.charAt(index));
 			if(index < source.length()-1)
 				source = source.substring(index+1);
 			return c;
@@ -278,36 +276,7 @@ public class SscanfFormat {
 			return null;
 		
 		switch (fmt) {
-			case 'd': {
-				long v = 0;
-				if(source.charAt(index) == '-') {
-					s = -1;
-					++index;
-				}  else {
-					s = 1;
-				}
-				int sLen = source.length();
-				boolean foundNumber = false;
-				while(index < sLen) {
-					char c = source.charAt(index);
-					
-					if(c >= '0' && c <= '9') {
-						v = (v * 10) + c - '0';
-						++index;
-						foundNumber = true;
-						if(width > 0 && --width == 0)
-							break;
-					} else {
-						break;
-					}
-				}
-				
-				if(foundNumber) {
-					v *= s;
-					retval = new Long(v);
-				}
-			} break;
-				
+			case 'd':
 			case 'i': {
 				int v = 0;
 				if(source.charAt(index) == '-') {
@@ -334,12 +303,12 @@ public class SscanfFormat {
 				
 				if(foundNumber) {
 					v *= s;
-					retval = new Integer(v);
+					retval = Integer.valueOf(v);
 				} 
 			} break;
 			
 			case 'u': {
-				long v = 0;
+				int v = 0;
 				int sLen = source.length();
 				boolean foundNumber = false;
 				while(index < sLen) {
@@ -357,12 +326,13 @@ public class SscanfFormat {
 				}
 				
 				if(foundNumber) {
-					retval = new Long(v);
+					retval = Integer.valueOf(v);
 				} 
 			} break;
 	
-			case 'x': {
-				long v = 0;
+			case 'x':
+			case 'X': {
+				int v = 0;
 				int sLen = source.length();
 				boolean foundNumber = false;
 				while(index < sLen) {
@@ -380,29 +350,6 @@ public class SscanfFormat {
 						foundNumber = true;
 						if(width > 0 && --width == 0)
 							break;
-					} else {
-						break;
-					}
-				}
-				
-				if(foundNumber) {
-					retval = new Long(v);
-				} 
-			} break;
-			
-			case 'X': {
-				long v = 0;
-				int sLen = source.length();
-				boolean foundNumber = false;
-				while(index < sLen) {
-					char c = source.charAt(index);
-					
-					if(c >= '0' && c <= '9') {
-						v = (v * 16) + c - '0';
-						++index;
-						foundNumber = true;
-						if(width > 0 && --width == 0)
-							break;
 					} else if(c >= 'A' && c <= 'F') {
 						v = (v * 16) + c - 'A' + 10;	
 						++index;
@@ -415,7 +362,7 @@ public class SscanfFormat {
 				}
 				
 				if(foundNumber) {
-					retval = new Long(v);
+					retval = Integer.valueOf(v);
 				} 
 			} break;
 			
