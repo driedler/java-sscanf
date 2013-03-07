@@ -1,3 +1,6 @@
+// Code barrowed heavily from:
+// Copyright (c) 2003-2011, Jodd Team (jodd.org). All Rights Reserved.
+
 package util.sscanf;
 
 import java.util.ArrayList;
